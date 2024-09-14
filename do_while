@@ -1,0 +1,122 @@
+Imports System.IO
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+
+Public Class Form1
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        FileOpen(1, "C:\Users\dora0\Desktop\1.txt", OpenMode.Input)
+        Dim all, lla, go, m1, m2
+        Input(1, all)
+        FileClose(1)
+        Dim x = 1
+        go = all
+        Do While x <= 9
+            m1 = go \ 10
+            m2 = go Mod 10
+            lla = lla & m2
+            If m1 = 0 Then
+                Exit Do
+            Else
+                go = m1
+            End If
+            x += 1
+        Loop
+        If all = lla Then
+            T1.Text = "第一題結果：" & all & " is a palindrome"
+        Else
+            T1.Text = "第一題結果：" & all & " is not a palindrome"
+        End If
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        FileOpen(2, "C:\Users\dora0\Desktop\2.txt", OpenMode.Input)
+        Dim data
+        Input(2, data)
+        FileClose(2)
+        Dim x = 1
+        Do While x <= data
+            Dim y = 1
+            Do While y <= x
+                T2.Text = T2.Text & y
+                y += 1
+            Loop
+            T2.Text = T2.Text & vbNewLine
+            x += 1
+        Loop
+        T2.Text = "第二題結果：" & vbNewLine & T2.Text
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        FileOpen(3, "C:\Users\dora0\Desktop\3.txt", OpenMode.Input)
+        Dim data, num
+        Input(3, data)
+        FileClose(3)
+        Dim x = 1
+        Do While x <= data
+            If data Mod x = 0 Then
+                num += 1
+            End If
+            x += 1
+        Loop
+        If num = 2 Then
+            T3.Text = "第三題結果：" & data & " is a prime number"
+        Else
+            T3.Text = "第三題結果：" & data & " is not a prime number"
+
+        End If
+    End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Dim W(3), H(3), BMI(3), z
+        FileOpen(4, "C:\Users\dora0\Desktop\4.txt", OpenMode.Input)
+        Dim i = 1
+        Do While i <= 3
+            Input(4, H(i))
+            Input(4, W(i))
+            BMI(i) = W(i) / (H(i) / 100) ^ 2
+            i += 1
+        Loop
+        FileClose(4)
+        Dim x = 1
+        Do While x <= 2
+            Dim y = 1
+            Do While y <= 2
+                If BMI(y) > BMI(y + 1) Then
+                    z = BMI(y)
+                    BMI(y) = BMI(y + 1)
+                    BMI(y + 1) = z
+                End If
+                y += 1
+            Loop
+            x += 1
+        Loop
+        Dim a As Integer
+        a = BMI(1)
+        If a >= 20 And a <= 25 Then
+            T4.Text = "第四題結果：最小BMI值=" & a & "，正常"
+        Else
+            T4.Text = "第四題結果：最小BMI值=" & a & "，不正常"
+        End If
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        FileOpen(5, "C:\Users\dora0\Desktop\5.txt", OpenMode.Input)
+        Dim a(4), b(4), c(4), x
+        x = 1
+        Do While x <= 4
+            Input(5, a(x))
+            x += 1
+        Loop
+        x = 1
+        Do While x <= 4
+            Input(5, b(x))
+            x += 1
+        Loop
+        x = 1
+        Do While x <= 4
+            c(x) = a(x) + b(x)
+            x += 1
+        Loop
+        FileClose(5)
+        T5.Text = "第五題結果：" & vbNewLine & "[" & c(1) & "    " & c(2) & "]" & vbNewLine & "[" & c(3) & "   " & c(4) & "]"
+    End Sub
+End Class
